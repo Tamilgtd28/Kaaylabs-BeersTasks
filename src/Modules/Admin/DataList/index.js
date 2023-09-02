@@ -137,16 +137,7 @@ function DataList() {
                                         <CommonTable
                                             tableData={normalizedTableData(punkData)}
                                         />
-                                        <Pagination
-                                            currentPage={currentPage}
-                                            nextClick={() => paginationHandler('next')}
-                                            previousClick={() => paginationHandler('prev')}
-                                            paginationNumberClick={(position) => {
-                                                paginationHandler('current', position)
-                                            }}
-                                            noOfPage={totalNoPages}
-                                            totalPages={totalNoPages}
-                                        />
+
                                     </div>
                                         :
                                         <div className='row justify-content-center align-items-center'
@@ -159,6 +150,16 @@ function DataList() {
                                             </div>
                                         </div>
                                     }
+                                    <Pagination
+                                        currentPage={currentPage}
+                                        nextClick={() => paginationHandler('next')}
+                                        previousClick={() => paginationHandler('prev')}
+                                        paginationNumberClick={(position) => {
+                                            paginationHandler('current', position)
+                                        }}
+                                        noOfPage={totalNoPages}
+                                        totalPages={totalNoPages}
+                                    />
                                 </div>
                                     :
                                     <div className='row justify-content-center align-items-center'
