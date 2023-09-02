@@ -166,7 +166,9 @@ function DataList() {
                         height: '100vh'
                     }}
                 >
-                    {'Loading...'}
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only"></span>
+                    </div>
                 </div>
             }
         </>

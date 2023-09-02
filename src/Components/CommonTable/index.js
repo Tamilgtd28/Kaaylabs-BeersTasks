@@ -1,7 +1,7 @@
 import React from 'react'
 import { Pagination } from '../Pagination'
 
-function CommonTable({ tableData, currentPage, totalPages, noOfPage, previousClick, nextClick, paginationNumberClick, additionalClass }) {
+function CommonTable({ tableData }) {
 
     const renderTableHeader = () => {
         if (tableData) {

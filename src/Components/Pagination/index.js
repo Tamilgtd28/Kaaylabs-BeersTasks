@@ -1,6 +1,6 @@
 
 
-const Pagination = ({ currentPage, totalPages, noOfPage, previousClick, nextClick, paginationNumberClick, additionalClass }) => {
+const Pagination = ({ currentPage, totalPages, noOfPage, previousClick, nextClick, paginationNumberClick }) => {
     if (currentPage && totalPages) {
 
         const children = [];
@@ -31,7 +31,7 @@ const Pagination = ({ currentPage, totalPages, noOfPage, previousClick, nextClic
             }
 
             const ChildComponent = ({ text }) => {
-                return (<li className={`${currentPage + "" === text + "" ? 'active' : ''} page-item `} onClick={() => { if (paginationNumberClick) paginationNumberClick(text) }} ><a className="page-link" >{text}</a></li>);
+                return (<li className={`${currentPage + "" === text + "" ? 'active' : ''} page-item `} style={{cursor: "pointer"}} onClick={() => { if (paginationNumberClick) paginationNumberClick(text) }} ><a className="page-link" >{text}</a></li>);
             }
 
 
@@ -47,14 +47,14 @@ const Pagination = ({ currentPage, totalPages, noOfPage, previousClick, nextClic
         return (
             <nav aria-label="Page navigation example" >
                 <ul className="pagination justify-content-end mb-0">
-                    <li className={`${currentPage === 1 ? 'disabled' : ''} page-item `} onClick={currentPage === 1 ? undefined : previousClick}>
+                    <li className={`${currentPage === 1 ? 'disabled' : ''} page-item `} style={{cursor: "pointer"}} onClick={currentPage === 1 ? undefined : previousClick}>
                         <a className="page-link">
                             <i className="fas fa-angle-left"></i>
                             <span className="sr-only">Previous</span>
                         </a>
                     </li>
                     {children}
-                    <li className={`${currentPage >= totalPages ? 'disabled' : ''} page-item `} onClick={currentPage >= totalPages ? undefined : nextClick} >
+                    <li className={`${currentPage >= totalPages ? 'disabled' : ''} page-item `} style={{cursor: "pointer"}} onClick={currentPage >= totalPages ? undefined : nextClick} >
                         <a className="page-link">
                             <i className="fas fa-angle-right"></i>
                             <span className="sr-only">Next</span>
