@@ -17,7 +17,7 @@ function DataList() {
     const { punkData } = useSelector((state) => state.AppReducer)
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
-    const [totalNoPages, setTotalNoPages] = useState(325)
+    const [totalNoPages, setTotalNoPages] = useState('')
     const [date, setDate] = useState()
     const [dropDownType, setDropDownType] = useState(1)
     const [error, setError] = useState('')
@@ -28,7 +28,7 @@ function DataList() {
 
     useEffect(() => {
         fetchPunkData(currentPage, dropDownType)
-        setTotalNoPages(Math.ceil(totalNoPages / 10))
+        setTotalNoPages(Math.ceil(325 / 10))
     }, [dropDownType, date])
 
 
