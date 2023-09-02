@@ -20,7 +20,8 @@ function DataList() {
     const [totalNoPages, setTotalNoPages] = useState('')
     const [date, setDate] = useState()
     const [dropDownType, setDropDownType] = useState(1)
-    const [error, setError] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+
 
     console.log("totalNoPages", dropDownType)
 
@@ -28,6 +29,7 @@ function DataList() {
     useEffect(() => {
         fetchPunkData(currentPage, dropDownType)
         setTotalNoPages(Math.ceil(325 / 10))
+
     }, [dropDownType, date])
 
 
@@ -43,31 +45,31 @@ function DataList() {
                 :
                 `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=10`
 
-
         if (+listType === 1) {
+            setIsLoading(true)
             getApiHandler(url)
                 .then(response => {
                     dispatch(getPunkData(response?.data))
+                    setIsLoading(false)
                 })
                 .catch(error => console.log(error))
         }
         else {
 
             if (date && dropDownType) {
+                setIsLoading(true)
                 getApiHandler(url)
                     .then(response => {
                         dispatch(getPunkData(response?.data))
+                        setIsLoading(false)
                     })
                     .catch(error => console.log(error))
             }
             else {
-                setError('please pick a date')
                 console.error('please pick a date')
             }
 
         }
-
-
     }
 
     const normalizedTableData = (data) => {
@@ -84,8 +86,6 @@ function DataList() {
             };
         });
     };
-
-
 
 
     function paginationHandler(type, position) {
@@ -133,19 +133,32 @@ function DataList() {
                         <div className="card">
                             <div className="card-body ">
                                 {punkData && punkData?.length > 0 ? <div className=''>
-                                    <CommonTable
-                                        tableData={normalizedTableData(punkData)}
-                                    />
-                                    <Pagination
-                                        currentPage={currentPage}
-                                        nextClick={() => paginationHandler('next')}
-                                        previousClick={() => paginationHandler('prev')}
-                                        paginationNumberClick={(position) => {
-                                            paginationHandler('current', position)
-                                        }}
-                                        noOfPage={totalNoPages}
-                                        totalPages={totalNoPages}
-                                    />
+                                    {!isLoading ? <div>
+                                        <CommonTable
+                                            tableData={normalizedTableData(punkData)}
+                                        />
+                                        <Pagination
+                                            currentPage={currentPage}
+                                            nextClick={() => paginationHandler('next')}
+                                            previousClick={() => paginationHandler('prev')}
+                                            paginationNumberClick={(position) => {
+                                                paginationHandler('current', position)
+                                            }}
+                                            noOfPage={totalNoPages}
+                                            totalPages={totalNoPages}
+                                        />
+                                    </div>
+                                        :
+                                        <div className='row justify-content-center align-items-center'
+                                            style={{
+                                                height: '68vh'
+                                            }}
+                                        >
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                                     :
                                     <div className='row justify-content-center align-items-center'
