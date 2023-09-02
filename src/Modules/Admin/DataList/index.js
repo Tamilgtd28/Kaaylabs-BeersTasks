@@ -176,7 +176,7 @@ function DataList() {
                         height: '100vh'
                     }}
                 >
-                    {'Loading'}
+                    {'Loading...'}
                 </div>
             }
         </>
