@@ -4,14 +4,13 @@ import { FormGroup } from 'reactstrap';
 import "react-datetime/css/react-datetime.css";
 
 
-function DatePicker({ id, heading, placeholder, type = 'date', dateFormatType = "LT", onChange, disableFuture = false, dateShowingFormat = "after", disabled = false, Ref, ...rest }) {
+function DatePicker({ id, heading, placeholder, type = 'date', dateFormatType = "LT", onChange, disableFuture = false, dateShowingFormat = "after", disabled = false,  ...rest }) {
 
     return (
         <FormGroup>
             {heading && <label htmlFor={id} className={`form-control-label h6`}>{heading}</label>}
 
             <ReactDatetime
-                ref={Ref}
                 {...rest}
                 inputProps={
                     {

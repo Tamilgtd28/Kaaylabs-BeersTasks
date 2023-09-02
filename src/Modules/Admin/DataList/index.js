@@ -21,7 +21,6 @@ function DataList() {
     const [date, setDate] = useState()
     const [dropDownType, setDropDownType] = useState(1)
     const [error, setError] = useState('')
-    const dateTimeRef = useRef(null);
 
     console.log("totalNoPages", dropDownType)
 
@@ -86,11 +85,6 @@ function DataList() {
         });
     };
 
-    const handleClear = () => {
-        if (dateTimeRef.current) {
-            dateTimeRef.current.clear();
-        }
-    };
 
 
 
@@ -106,7 +100,6 @@ function DataList() {
         fetchPunkData(page, dropDownType);
     }
 
-    console.log('date', date)
 
     return (
         <>
@@ -116,7 +109,6 @@ function DataList() {
                     <div className='row m-4'>
                         <div className='col-sm-3'>
                             <DatePicker
-                                Ref={dateTimeRef}
                                 disabled={+dropDownType === 1}
                                 heading={"Date"}
                                 placeholder={"Date"}
@@ -134,8 +126,6 @@ function DataList() {
                                 placeholder={'DropDown'}
                                 onChange={(e) => {
                                     setDropDownType(e.target.value)
-                                    if (+e.target.value === 11)
-                                        handleClear()
                                 }}
                                 value={dropDownType}
                             />
