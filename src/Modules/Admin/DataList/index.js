@@ -108,6 +108,17 @@ function DataList() {
                     <h3 className='text-center'>Beers</h3>
                     <div className='row m-4'>
                         <div className='col-sm-3'>
+                            <DropDown
+                                heading={'DropDown'}
+                                data={COMMENT_TYPE}
+                                placeholder={'DropDown'}
+                                onChange={(e) => {
+                                    setDropDownType(e.target.value)
+                                }}
+                                value={dropDownType}
+                            />
+                        </div>
+                        <div className='col-sm-3'>
                             <DatePicker
                                 disabled={+dropDownType === 1}
                                 heading={"Date"}
@@ -117,17 +128,6 @@ function DataList() {
                                     setDate(e)
                                     setCurrentPage(1)
                                 }}
-                            />
-                        </div>
-                        <div className='col-sm-3'>
-                            <DropDown
-                                heading={'DropDown'}
-                                data={COMMENT_TYPE}
-                                placeholder={'DropDown'}
-                                onChange={(e) => {
-                                    setDropDownType(e.target.value)
-                                }}
-                                value={dropDownType}
                             />
                         </div>
                         <div className="card">
